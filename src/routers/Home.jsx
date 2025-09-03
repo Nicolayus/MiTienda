@@ -34,7 +34,8 @@ export default function Home() {
         }}
       >
         <h1 style={{ color: "#949494ff", fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem" }}>
-          Bienvenido a <span style={{ color: "#f97316" }}>MiTienda</span>
+          Bienvenido a <span style={{ color: "#f97316" }}>Tienda Celeste
+          </span>
         </h1>
         <p style={{ fontSize: "1.2rem", marginBottom: "2rem" }}>
           Encuentra los mejores productos al mejor precio 🚀
