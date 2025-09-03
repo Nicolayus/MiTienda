@@ -1,0 +1,689 @@
+/* 🎨 Variables globales */
+:root {
+  --color-primary: #2563eb;
+  --color-primary-dark: #1d4ed8;
+  --color-secondary: #f97316;
+  --color-light: #f9fafb;
+  --color-dark: #111827;
+  --radius: 12px;
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  --transition: all 0.2s ease-in-out;
+}
+
+/* 🔄 Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===============================
+   🎨 GENERAL LAYOUT & TYPOGRAPHY
+   =============================== */
+body {
+  font-family: "Segoe UI", Roboto, sans-serif;
+  background: #f3f4f6;
+  color: var(--color-dark);
+}
+
+h1, h2, h3, h4 {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--color-dark);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+.nav-links a.active {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* ===============================
+   🌐 NAVBAR
+   =============================== */
+.navbar {
+  background: white;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.logo {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: var(--color-dark);
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--color-primary);
+}
+
+/* ===============================
+   🛍️ PRODUCT GRID & CARDS
+   =============================== */
+.products-container {
+  padding: 2rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.card {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-bottom: 0.5rem;
+}
+
+.card-body {
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-body h3,
+.card h3 {
+  font-size: 1.1rem;
+  margin: 0.3rem 0;
+}
+
+.card-body p,
+.card p {
+  flex: 1;
+  font-size: 1.1rem;
+  color: #4b5563;
+  margin: 0.2rem 0;
+}
+
+.price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+  color: var(--color-primary);
+}
+
+/* ===============================
+   🛒 CARRITO
+   =============================== */
+.cart-summary {
+  background: white;
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.category-filters {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.filter-btn.active {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+/* ===============================
+   🧾 CHECKOUT STEPS
+   =============================== */
+.checkout-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.step {
+  flex: 1;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #9ca3af;
+  position: relative;
+}
+
+.step.active {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.step::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -50%;
+  width: 100%;
+  height: 2px;
+  background: #e5e7eb;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.step:last-child::after {
+  display: none;
+}
+
+/* 📋 Inputs del modal */
+.checkout-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.checkout-form input,
+.checkout-form select {
+  padding: 0.7rem;
+  border: 1px solid #ddd;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  margin-top: 0.3rem;
+}
+
+/* ⬅️➡️ Navegación entre pasos */
+.checkout-modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.modal-review ul{
+    list-style: none;
+}
+
+.checkout-modal-actions button {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.checkout-modal-actions .btn-prev {
+  background: #e5e7eb;
+  color: #374151;
+  margin-right: 0.5rem;
+}
+
+.checkout-modal-actions .btn-prev:hover {
+  background: #d1d5db;
+}
+
+.checkout-modal-actions .btn-next {
+  background: var(--color-primary);
+  color: #fff;
+  margin-left: 0.5rem;
+}
+
+.checkout-modal-actions .btn-next:hover {
+  background: var(--color-primary-dark);
+}
+
+
+/* ===============================
+   🔘 BOTONES
+   =============================== */
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+}
+
+.btn-outline {
+  background: white;
+  border: 1px solid #ddd;
+  color: var(--color-dark);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* ===============================
+    MODAL
+   =============================== */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.modal {
+  background: white;
+  padding: 2rem;
+  border-radius: var(--radius);
+  width: 90%;
+  max-width: 400px;
+  box-shadow: var(--shadow);
+  animation: fadeIn 0.3s ease-in-out;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.modal-header h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0px !important;
+  font-weight: 600;
+  color: var(--color-dark);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #555;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.modal-close:hover {
+  color: var(--color-primary);
+}
+
+.modal-body {
+  font-size: 0.95rem;
+  color: var(--color-dark);
+}
+
+.modal h2 {
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+
+.modal-body form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.contact-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+
+.modal input,
+.modal textarea {
+  padding: 0.7rem;
+  border: 1px solid #ddd;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  resize: vertical;
+}
+
+/* ===============================
+   🏷️ FOOTER (mejorado)
+   =============================== */
+footer {
+  background: var(--color-dark);
+  color: #fff;
+  padding: 3rem 2rem 2rem;
+  margin-top: auto;
+  width: 100%;
+  position: relative;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.footer-col h3,
+.footer-col h4 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--color-light);
+}
+
+.footer-col p,
+.footer-col a {
+  font-size: 0.9rem;
+  color: #d1d5db;
+  transition: var(--transition);
+}
+
+.footer-col a:hover {
+  color: var(--color-primary);
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.footer-social a {
+  font-size: 1rem;
+  color: #d1d5db;
+}
+
+.footer-social a:hover {
+  color: var(--color-primary);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  color: #9ca3af;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1rem;
+}
+
+/* 📌 Botón de contacto en el footer */
+.footer-contact-btn {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 2rem;
+  background: var(--color-primary);
+  color: #fff;
+  padding: 0.7rem 1.4rem;
+  border-radius: 50px;
+  font-weight: 600;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+}
+
+.footer-contact-btn:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+
+/* 🎨 CONTENEDOR PRINCIPAL */
+.checkout-container {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* 🛒 Título */
+.checkout-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #111827;
+}
+
+/* 📭 Carrito vacío */
+.checkout-empty {
+  font-size: 1.1rem;
+  color: #4b5563;
+}
+
+.checkout-link {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.checkout-link:hover {
+  color: #1d4ed8;
+}
+
+.checkout-items-container{
+  display: flex;
+  gap: 2rem;
+}
+/* 🧾 Lista de productos */
+.checkout-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* 🎁 Tarjeta de producto */
+.checkout-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.checkout-item-info-container{
+  display: flex;
+  align-items: center;
+}
+
+.checkout-item-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.checkout-item-info {
+  flex: 1;
+  margin-left: 1rem;
+}
+
+.checkout-item-name {
+    display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.checkout-item-detail {
+  width: 100%;  
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+/* 💰 Acciones del producto */
+.checkout-item-actions {
+    display: flex;
+    text-align: right;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.checkout-item-subtotal {
+  width: 180px;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #111827;
+}
+
+.checkout-qty-input {
+  width: 60px;
+  padding: 0.3rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-left: 0.5rem;
+}
+
+
+.checkout-remove-btn {
+  margin-top: 0.3rem;
+  background: none;
+  border: none;
+  font-size: 0.85rem;
+  color: #dc2626;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.checkout-remove-btn:hover {
+  color: #b91c1c;
+}
+
+/* 🧮 Resumen de compra */
+.checkout-summary {
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+
+.checkout-total {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* 💳 Botón de pago */
+.checkout-pay-btn {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: #2563eb;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.checkout-pay-btn:hover {
+  background: #1d4ed8;
+}
+
+
+
+/* ======================
+              Basura
+========================= */
+.checkout-remove-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkout-trash-icon {
+  width: 22px;
+  height: 22px;
+  fill: #dc2626; /* usa fill porque este ícono no tiene stroke */
+  transition: fill 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.checkout-remove-btn:hover .checkout-trash-icon {
+  fill: #b91c1c; /* rojo más oscuro al pasar */
+  transform: scale(1.1);
+}
+
+
+/* ===============================
+   ✨ ANIMATIONS
+   =============================== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
